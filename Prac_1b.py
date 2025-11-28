@@ -17,22 +17,14 @@ for i in range(n):
     ele = float(input())
     weights.append(ele)
 
-# Step 4: Calculate Yin using sum(xi * wi)
-Yin_terms = []
-for i in range(n):
-    Yin_terms.append(inputs[i] * weights[i])
+# Store the final net input value
+Yin_value = sum(Yin)
 
-Yin = sum(Yin_terms)
+# Binary Sigmoid Function
+binary_sigmoid = 1 / (1 + (2.71828 ** (-Yin_value)))
 
-print("\n-------------------------------")
-print("Net Input (Yin) =", round(Yin, 4))
-print("-------------------------------")
+# Bipolar Sigmoid Function
+bipolar_sigmoid = (2 / (1 + (2.71828 ** (-Yin_value)))) - 1
 
-# Step 5: Binary Sigmoid Activation
-binary_sigmoid = 1 / (1 + math.exp(-Yin))
-
-# Step 6: Bipolar Sigmoid Activation
-bipolar_sigmoid = (2 / (1 + math.exp(-Yin))) - 1
-
-print("Binary Sigmoid Output     =", round(binary_sigmoid, 4))
-print("Bipolar Sigmoid Output    =", round(bipolar_sigmoid, 4))
+print("Binary Sigmoid Output =", round(binary_sigmoid, 4))
+print("Bipolar Sigmoid Output =", round(bipolar_sigmoid, 4))
