@@ -1,30 +1,38 @@
-#Aim: Calculate the output of a Neural Net using both binary and bipolar sigmoidal function.
-# number of elements as input
-n = int(input("Enter number of elements : "))
+import math
 
-# Entering the inputs
-print("Enter the inputs")
+# Step 1: Number of inputs
+n = int(input("Enter number of elements: "))
+
+# Step 2: Enter input values
+print("Enter the inputs:")
 inputs = []
-
-for i in range(0, n):
+for i in range(n):
     ele = float(input())
     inputs.append(ele)
 
-print(inputs)
-
-print("Enter the weights")
+# Step 3: Enter weight values
+print("Enter the weights:")
 weights = []
-
-for i in range(0, n):
+for i in range(n):
     ele = float(input())
     weights.append(ele)
 
-print(weights)
+# Step 4: Calculate Yin using sum(xi * wi)
+Yin_terms = []
+for i in range(n):
+    Yin_terms.append(inputs[i] * weights[i])
 
-print("The net input can be calculated as Yin = x1w1 + x2w2 + x3w3")
+Yin = sum(Yin_terms)
 
-Yin = []
-for i in range(0, n):
-    Yin.append(inputs[i] * weights[i])
+print("\n-------------------------------")
+print("Net Input (Yin) =", round(Yin, 4))
+print("-------------------------------")
 
-print(round(sum(Yin), 3))
+# Step 5: Binary Sigmoid Activation
+binary_sigmoid = 1 / (1 + math.exp(-Yin))
+
+# Step 6: Bipolar Sigmoid Activation
+bipolar_sigmoid = (2 / (1 + math.exp(-Yin))) - 1
+
+print("Binary Sigmoid Output     =", round(binary_sigmoid, 4))
+print("Bipolar Sigmoid Output    =", round(bipolar_sigmoid, 4))
